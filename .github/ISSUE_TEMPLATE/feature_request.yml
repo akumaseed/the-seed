@@ -57,6 +57,6 @@ body:
       label: Character philosophy impact
       description: |
         Does this touch character identity, passports, continuity, memory, portrayal, transfer, archive, or player-facing character UX?
-        If so, how are identity anchors, provenance, player consent, privacy, and creator rights preserved? See docs/CHARACTER_PHILOSOPHY.md.
+        If so, how are identity anchors, provenance, player consent, privacy, and creator rights preserved?
     validations:
       required: true

@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for helping improve THE SEED. THE SEED is an early-stage research project; please report problems in **implemented** code or documentation.
 
-        **Do not report security vulnerabilities here.** Follow [`SECURITY.md`](../blob/main/SECURITY.md) instead.
+        **Do not report security vulnerabilities here.** Report them privately: https://github.com/akumaseed/the-seed/security/advisories/new
         Never paste tokens, keys, passwords, personal data, private player data, or game save files.
   - type: textarea
     id: summary
@@ -72,7 +72,7 @@ body:
     id: character_impact
     attributes:
       label: Does this affect a character's identity or continuity?
-      description: See docs/CHARACTER_PHILOSOPHY.md.
+      description: Identity, appearance, story, milestones, relationships, privacy, or transfer behavior.
       options:
         - "No"
         - "Yes"

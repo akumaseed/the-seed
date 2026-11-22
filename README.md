@@ -13,8 +13,6 @@ A character can carry years of choices, stories, achievements, friendships, crea
 
 This does not claim that game characters are sentient, and it does not override creators' intellectual-property rights. It means the player's relationship with the character is treated with care, consent, privacy, and continuity.
 
-Read [`docs/CHARACTER_PHILOSOPHY.md`](docs/CHARACTER_PHILOSOPHY.md) for the detailed product and engineering requirements.
-
 ## The four pillars
 
 - **THE SEED** — the complete network, protocols, SDKs, and ecosystem connecting worlds.
@@ -40,11 +38,12 @@ Read [`docs/CHARACTER_PHILOSOPHY.md`](docs/CHARACTER_PHILOSOPHY.md) for the deta
 
 ## Start here
 
-1. Read [`THE_SEED_MASTER_SPEC.md`](THE_SEED_MASTER_SPEC.md).
-2. Read [`docs/CHARACTER_PHILOSOPHY.md`](docs/CHARACTER_PHILOSOPHY.md).
-3. Read [`AGENTS.md`](AGENTS.md) before using an AI coding agent.
-4. Review the initial implementation backlog in the master specification.
-5. Open an issue or a Seed Enhancement Proposal (SEP) before changing foundational protocol decisions.
+1. Read this README and the open issues and milestones.
+2. Open an issue or an architecture/protocol proposal (SEP) before changing foundational protocol decisions.
+
+## Security
+
+Do not report vulnerabilities in public issues. Use GitHub private vulnerability reporting: <https://github.com/akumaseed/the-seed/security/advisories/new>. Never include tokens, keys, personal data, private player data, or save files in any report.
 
 ## Technology direction
 

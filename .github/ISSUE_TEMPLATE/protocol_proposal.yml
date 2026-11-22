@@ -6,9 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form for changes to protocol, identity, cryptography, consensus, transfer authority, patch policy, compatibility, governance, or character continuity. See [`GOVERNANCE.md`](../blob/main/GOVERNANCE.md).
+        Use this form for changes to protocol, identity, cryptography, consensus, transfer authority, patch policy, compatibility, governance, or character continuity.
 
-        A proposal is a discussion, not an accepted decision. Do not include exploit details — follow [`SECURITY.md`](../blob/main/SECURITY.md).
+        A proposal is a discussion, not an accepted decision. Do not include exploit details — report vulnerabilities privately: https://github.com/akumaseed/the-seed/security/advisories/new
   - type: textarea
     id: motivation
     attributes:

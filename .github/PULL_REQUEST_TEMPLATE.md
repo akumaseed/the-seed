@@ -48,7 +48,7 @@ Related issue / ADR / SEP:
 - Human review: done / pending
 
 ## Checklist
-- [ ] I read `AGENTS.md`, `THE_SEED_MASTER_SPEC.md`, `docs/CHARACTER_PHILOSOPHY.md`, and related documentation.
+- [ ] I read the README and the related issue/proposal.
 - [ ] The change matches the project's real stage (no planned feature presented as implemented).
 - [ ] Tests added or updated where appropriate.
 - [ ] Formatting and lint checks pass.
