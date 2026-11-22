@@ -1,0 +1,18 @@
+[workspace]
+resolver = "3"
+members = []
+
+# This repository currently contains architecture and contribution scaffolding.
+# Add crates to `members` only when an implementation slice is ready.
+
+[workspace.package]
+edition = "2024"
+repository = "https://github.com/akumaseed/the-seed"
+
+[workspace.lints.rust]
+unsafe_code = "warn"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = "warn"
+pedantic = "warn"

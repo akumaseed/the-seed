@@ -1,0 +1,62 @@
+name: Feature request
+description: Suggest a new capability or improvement.
+title: "feature: "
+labels: ["type: feature", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        THE SEED is in architecture and research stage. Foundational changes (protocol, identity, cryptography, consensus, transfer authority, patch policy, governance, character continuity schema) need an architecture/protocol proposal or SEP — use the **Architecture / protocol proposal** form instead.
+
+        Never paste secrets, personal data, or private player data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem does this solve, and for whom?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: components
+    attributes:
+      label: Affected components
+      options:
+        - label: THE SEED core / protocol
+        - label: CARDINAL
+        - label: PANDORA
+        - label: YURI
+        - label: SDK
+        - label: Dashboard
+        - label: Documentation
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Backward compatibility
+      description: Does this change existing protocols, schemas, APIs, or behavior?
+    validations:
+      required: true
+  - type: textarea
+    id: security_privacy_cost
+    attributes:
+      label: Security, privacy, and cost impact
+    validations:
+      required: true
+  - type: textarea
+    id: character
+    attributes:
+      label: Character philosophy impact
+      description: |
+        Does this touch character identity, passports, continuity, memory, portrayal, transfer, archive, or player-facing character UX?
+        If so, how are identity anchors, provenance, player consent, privacy, and creator rights preserved? See docs/CHARACTER_PHILOSOPHY.md.
+    validations:
+      required: true

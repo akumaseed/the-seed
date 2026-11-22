@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Only ecosystems actually present in the repository are listed.
+  # Add "cargo" when the Rust workspace has real crates and a Cargo.lock.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
+
+  - package-ecosystem: pip
+    directory: /tools/ci
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3

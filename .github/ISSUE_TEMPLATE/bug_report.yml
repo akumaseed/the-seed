@@ -1,0 +1,96 @@
+name: Bug report
+description: Report a reproducible issue in an implemented feature.
+title: "bug: "
+labels: ["type: bug", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve THE SEED. THE SEED is an early-stage research project; please report problems in **implemented** code or documentation.
+
+        **Do not report security vulnerabilities here.** Follow [`SECURITY.md`](../blob/main/SECURITY.md) instead.
+        Never paste tokens, keys, passwords, personal data, private player data, or game save files.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the problem.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - THE SEED core / protocol
+        - CARDINAL
+        - PANDORA
+        - YURI
+        - SDK
+        - Dashboard
+        - Documentation / specification
+        - CI / repository tooling
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Commit SHA, branch, or release you were using.
+      placeholder: e.g. 910ca5d
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, toolchain versions, engine, or other relevant context.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: character_impact
+    attributes:
+      label: Does this affect a character's identity or continuity?
+      description: See docs/CHARACTER_PHILOSOPHY.md.
+      options:
+        - "No"
+        - "Yes"
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: character_details
+    attributes:
+      label: Character impact details
+      description: If yes, describe whether identity, appearance, story, milestones, relationships, privacy, or transfer behavior was affected. Do not include private player data.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (redacted)
+      description: Remove tokens, keys, personal data, and private player data before pasting.
+      render: text
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
