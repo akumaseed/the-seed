@@ -1,0 +1,205 @@
+{
+  "schema": "seed.character-continuity-manifest/1.0",
+  "character_id": "seed:character:example-traveler",
+  "manifest_version": 4,
+  "entries": [
+    {
+      "entry_id": "biography-1",
+      "entry_schema_version": "1.0",
+      "entry_type": "biography",
+      "content": {
+        "ref": "seed:continuity:bio-encrypted-1",
+        "encrypted": true
+      },
+      "provenance": {
+        "source": "player_authored",
+        "issuer": "seed:identity:example-player",
+        "created_at": "2026-11-01T10:00:00Z"
+      },
+      "canonical": true,
+      "approval": {
+        "state": "player_approved",
+        "approved_at": "2026-11-01T10:05:00Z"
+      },
+      "visibility": {
+        "scope": "private"
+      },
+      "portability": {
+        "scope": "local_only"
+      },
+      "participants": {
+        "contains_other_participants_data": false,
+        "consents": []
+      },
+      "lifecycle": {
+        "exportable": true,
+        "deletable": true,
+        "revocable": true
+      },
+      "ai_use": {
+        "allowed": false
+      }
+    },
+    {
+      "entry_id": "milestone-first-clear",
+      "entry_schema_version": "1.0",
+      "entry_type": "milestone",
+      "content": {
+        "ref": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "encrypted": false
+      },
+      "provenance": {
+        "source": "source_world",
+        "issuer": "seed:world:example-origin",
+        "created_at": "yesterday"
+      },
+      "canonical": true,
+      "approval": {
+        "state": "player_approved",
+        "approved_at": "2026-10-21T09:00:00Z"
+      },
+      "visibility": {
+        "scope": "public"
+      },
+      "portability": {
+        "scope": "global"
+      },
+      "participants": {
+        "contains_other_participants_data": false,
+        "consents": []
+      },
+      "lifecycle": {
+        "exportable": true,
+        "deletable": false,
+        "revocable": true
+      },
+      "ai_use": {
+        "allowed": false
+      }
+    },
+    {
+      "entry_id": "title-wanderer",
+      "entry_schema_version": "1.0",
+      "entry_type": "title",
+      "content": {
+        "ref": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "encrypted": false
+      },
+      "provenance": {
+        "source": "player_authored",
+        "issuer": "seed:identity:example-player",
+        "created_at": "2026-11-02T12:00:00Z"
+      },
+      "canonical": true,
+      "approval": {
+        "state": "player_approved",
+        "approved_at": "2026-11-02T12:01:00Z"
+      },
+      "visibility": {
+        "scope": "selected_worlds",
+        "worlds": [
+          "seed:world:example-destination"
+        ]
+      },
+      "portability": {
+        "scope": "approved_destinations",
+        "destinations": [
+          "seed:world:example-destination"
+        ]
+      },
+      "participants": {
+        "contains_other_participants_data": false,
+        "consents": []
+      },
+      "lifecycle": {
+        "exportable": true,
+        "deletable": true,
+        "revocable": true
+      },
+      "ai_use": {
+        "allowed": true,
+        "purposes": [
+          "portrayal-draft"
+        ]
+      }
+    },
+    {
+      "entry_id": "party-companion",
+      "entry_schema_version": "1.0",
+      "entry_type": "relationship_marker",
+      "content": {
+        "ref": "seed:continuity:relationship-1",
+        "encrypted": true
+      },
+      "provenance": {
+        "source": "player_authored",
+        "issuer": "seed:identity:example-player",
+        "created_at": "2026-11-03T20:00:00Z"
+      },
+      "canonical": true,
+      "approval": {
+        "state": "player_approved",
+        "approved_at": "2026-11-03T20:02:00Z"
+      },
+      "visibility": {
+        "scope": "private"
+      },
+      "portability": {
+        "scope": "local_only"
+      },
+      "participants": {
+        "contains_other_participants_data": true,
+        "consents": [
+          {
+            "participant": "seed:identity:example-friend",
+            "consent": "seed:consent:friend-grant-1"
+          }
+        ]
+      },
+      "lifecycle": {
+        "exportable": false,
+        "deletable": true,
+        "revocable": true
+      },
+      "ai_use": {
+        "allowed": false
+      }
+    },
+    {
+      "entry_id": "ai-draft-epilogue",
+      "entry_schema_version": "1.0",
+      "entry_type": "biography",
+      "content": {
+        "ref": "seed:continuity:draft-encrypted-2",
+        "encrypted": true
+      },
+      "provenance": {
+        "source": "ai_suggestion",
+        "issuer": "seed:world:example-destination",
+        "created_at": "2026-11-04T08:00:00Z"
+      },
+      "canonical": false,
+      "approval": {
+        "state": "suggested"
+      },
+      "visibility": {
+        "scope": "private"
+      },
+      "portability": {
+        "scope": "local_only"
+      },
+      "participants": {
+        "contains_other_participants_data": false,
+        "consents": []
+      },
+      "lifecycle": {
+        "exportable": true,
+        "deletable": true,
+        "revocable": true
+      },
+      "ai_use": {
+        "allowed": false
+      }
+    }
+  ]
+}

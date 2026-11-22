@@ -1,8 +1,7 @@
 name: docs-validation
 
 # Validates YAML, JSON, and internal Markdown links.
-# The repository is currently specification-only; Rust CI will be added
-# when the first real crate is added to the workspace.
+# Rust code and JSON Schema contracts are checked by rust-ci.yml.
 
 on:
   pull_request:
