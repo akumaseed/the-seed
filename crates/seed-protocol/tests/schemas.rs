@@ -32,7 +32,7 @@ fn read(path: &Path) -> String {
 #[test]
 fn examples_are_valid() {
     let files = json_files(&protocol_dir().join("examples"));
-    assert!(!files.is_empty(), "no examples found");
+    assert_ne!(files, Vec::<PathBuf>::new(), "no examples found");
     for path in files {
         if let Err(err) = validate_json(&read(&path)) {
             panic!("{} should be valid: {err} {err:?}", path.display());
@@ -48,7 +48,7 @@ fn invalid_fixtures_are_rejected_by_schema_validation() {
         match validate_json(&read(&path)) {
             Ok(id) => panic!("{} was accepted as {id}", path.display()),
             Err(DocumentError::Invalid { violations, .. }) => {
-                assert!(!violations.is_empty(), "{}", path.display());
+                assert_ne!(violations, Vec::new(), "{}", path.display());
             }
             Err(other) => panic!(
                 "{} was rejected for the wrong reason: {other:?}",
@@ -111,7 +111,11 @@ fn ai_suggestions_stay_non_canonical_until_approved() {
 #[test]
 fn unsupported_schema_versions_are_rejected_explicitly() {
     let files = json_files(&protocol_dir().join("test-vectors/unsupported"));
-    assert!(!files.is_empty());
+    assert_ne!(
+        files,
+        Vec::<PathBuf>::new(),
+        "no unsupported fixtures found"
+    );
     for path in files {
         assert!(
             matches!(
