@@ -34,7 +34,26 @@ This does not claim that game characters are sentient, and it does not override 
 
 ## Important status notice
 
-**Early-stage research and architecture. Not production-ready.** The repository currently begins with specifications and design work. A production blockchain, public validator network, working game SDKs, universal character transfers, and autonomous global patch deployment are not claimed to exist. APIs and schemas may change.
+**Early-stage research and architecture. Not production-ready.** A production blockchain, public validator network, working game SDKs, universal character transfers, and autonomous global patch deployment are not claimed to exist. APIs and schemas may change.
+
+## What exists today (Phase 0 foundation)
+
+| Path | What it is |
+|---|---|
+| `crates/seed-types` | Namespaced opaque identifiers typed per identity domain (a world ID is never accepted as a character ID), `MAJOR.MINOR` protocol versions with explicit negotiation, and the stable API error model. |
+| `crates/seed-protocol` | Embedded JSON Schemas and document validation. Rejections report the location and failed rule, never the document's values. |
+| `protocol/json-schema` | Proposed schemas: Character Identity Anchor 1.0 and Character Continuity Manifest 1.0. |
+| `protocol/examples`, `protocol/test-vectors` | Valid examples and one invalid fixture per rule (for example: an AI suggestion marked canonical without player approval, a private entry that is not encrypted, a relationship without the other participant's consent, raw chat logs as an entry type). |
+
+Not implemented yet: signatures and their verification, consent enforcement, storage, networking, CARDINAL, PANDORA, YURI, SDKs, and transfers. Passing schema validation does not prove authenticity or authorization.
+
+Build and test locally (the toolchain is pinned in `rust-toolchain.toml`):
+
+```sh
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets -- -D warnings
+cargo test --workspace --all-targets
+```
 
 ## Start here
 

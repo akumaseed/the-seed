@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:seed:schema:character-continuity-manifest:1.0",
+  "title": "THE SEED Character Continuity Manifest 1.0 (proposed)",
+  "description": "Optional, player-curated record of what matters to the player about their character. It is not a raw transcript archive. Raw chats, direct messages, voice transcripts, private journals and inferred emotions are not continuity entries. Status: Phase 0 proposal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "character_id", "manifest_version", "entries"],
+  "properties": {
+    "schema": { "const": "seed.character-continuity-manifest/1.0" },
+    "character_id": { "$ref": "#/$defs/character_id" },
+    "manifest_version": {
+      "description": "Monotonic version of this manifest. Every approved change increments it.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "entries": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "opaque": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "character_id": {
+      "type": "string",
+      "pattern": "^seed:character:[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "world_id": {
+      "type": "string",
+      "pattern": "^seed:world:[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "identity_ref": {
+      "type": "string",
+      "pattern": "^seed:identity:[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "consent_id": {
+      "type": "string",
+      "pattern": "^seed:consent:[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "issuer": {
+      "description": "A player identity or a world. Other identity domains cannot issue continuity entries.",
+      "type": "string",
+      "pattern": "^seed:(identity|world):[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?$"
+    },
+    "content_ref": {
+      "description": "Reference to the content, never the content itself: a SHA-256 content address or a continuity reference.",
+      "type": "string",
+      "pattern": "^(sha256:[0-9a-f]{64}|seed:continuity:[a-z0-9](?:[a-z0-9-]{0,126}[a-z0-9])?)$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "world_list": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/world_id" }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_id",
+        "entry_schema_version",
+        "entry_type",
+        "content",
+        "provenance",
+        "canonical",
+        "approval",
+        "visibility",
+        "portability",
+        "participants",
+        "lifecycle",
+        "ai_use"
+      ],
+      "properties": {
+        "entry_id": { "$ref": "#/$defs/opaque" },
+        "entry_schema_version": { "const": "1.0" },
+        "entry_type": {
+          "enum": [
+            "biography",
+            "milestone",
+            "title",
+            "visual_reference",
+            "selected_memory",
+            "relationship_marker"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ref", "encrypted"],
+          "properties": {
+            "ref": { "$ref": "#/$defs/content_ref" },
+            "encrypted": { "type": "boolean" }
+          }
+        },
+        "provenance": {
+          "description": "Who produced the entry. Original source-world facts, player-authored continuity, third-party verified claims, destination adaptations and AI suggestions are always distinguishable.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "issuer", "created_at"],
+          "properties": {
+            "source": {
+              "enum": [
+                "source_world",
+                "player_authored",
+                "verified_third_party",
+                "destination_adaptation",
+                "ai_suggestion"
+              ]
+            },
+            "issuer": { "$ref": "#/$defs/issuer" },
+            "created_at": { "$ref": "#/$defs/timestamp" }
+          }
+        },
+        "canonical": {
+          "description": "Whether the entry is part of the character's canonical story.",
+          "type": "boolean"
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state"],
+          "properties": {
+            "state": { "enum": ["suggested", "player_approved"] },
+            "approved_at": { "$ref": "#/$defs/timestamp" }
+          },
+          "if": { "properties": { "state": { "const": "player_approved" } } },
+          "then": { "required": ["approved_at"] },
+          "else": { "not": { "required": ["approved_at"] } }
+        },
+        "visibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scope"],
+          "properties": {
+            "scope": { "enum": ["private", "selected_worlds", "public"] },
+            "worlds": { "$ref": "#/$defs/world_list" }
+          },
+          "if": { "properties": { "scope": { "const": "selected_worlds" } } },
+          "then": { "required": ["worlds"] },
+          "else": { "not": { "required": ["worlds"] } }
+        },
+        "portability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scope"],
+          "properties": {
+            "scope": { "enum": ["local_only", "approved_destinations", "global"] },
+            "destinations": { "$ref": "#/$defs/world_list" }
+          },
+          "if": { "properties": { "scope": { "const": "approved_destinations" } } },
+          "then": { "required": ["destinations"] },
+          "else": { "not": { "required": ["destinations"] } }
+        },
+        "participants": {
+          "description": "Other people whose data appears in this entry, and the consent each of them granted.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["contains_other_participants_data", "consents"],
+          "properties": {
+            "contains_other_participants_data": { "type": "boolean" },
+            "consents": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["participant", "consent"],
+                "properties": {
+                  "participant": { "$ref": "#/$defs/identity_ref" },
+                  "consent": { "$ref": "#/$defs/consent_id" }
+                }
+              }
+            }
+          },
+          "if": { "properties": { "contains_other_participants_data": { "const": true } } },
+          "then": { "properties": { "consents": { "minItems": 1 } } },
+          "else": { "properties": { "consents": { "maxItems": 0 } } }
+        },
+        "lifecycle": {
+          "description": "Export, deletion and revocation semantics. Immutable public commitments cannot be deleted; that limit must be disclosed to the player.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["exportable", "deletable", "revocable"],
+          "properties": {
+            "exportable": { "type": "boolean" },
+            "deletable": { "type": "boolean" },
+            "revocable": { "type": "boolean" },
+            "retention_policy_ref": { "$ref": "#/$defs/content_ref" }
+          }
+        },
+        "ai_use": {
+          "description": "Whether an AI system may use this entry as context. Must be stated explicitly; when allowed, it is only for the listed specific purposes.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed"],
+          "properties": {
+            "allowed": { "type": "boolean" },
+            "purposes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9_-]{0,62}[a-z0-9])?$" }
+            }
+          },
+          "if": { "properties": { "allowed": { "const": true } } },
+          "then": { "required": ["purposes"] },
+          "else": { "not": { "required": ["purposes"] } }
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "An AI suggestion is never canonical until the player explicitly approves it.",
+          "if": {
+            "properties": { "provenance": { "properties": { "source": { "const": "ai_suggestion" } } } }
+          },
+          "then": {
+            "if": { "properties": { "canonical": { "const": true } } },
+            "then": { "properties": { "approval": { "properties": { "state": { "const": "player_approved" } } } } }
+          }
+        },
+        {
+          "$comment": "Private entries are stored only as encrypted content references.",
+          "if": {
+            "properties": { "visibility": { "properties": { "scope": { "const": "private" } } } }
+          },
+          "then": {
+            "properties": { "content": { "properties": { "encrypted": { "const": true } } } }
+          }
+        },
+        {
+          "$comment": "A relationship marker always involves another participant, so their consent is required.",
+          "if": { "properties": { "entry_type": { "const": "relationship_marker" } } },
+          "then": {
+            "properties": {
+              "participants": {
+                "properties": { "contains_other_participants_data": { "const": true } }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

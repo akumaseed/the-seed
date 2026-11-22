@@ -1,0 +1,29 @@
+{
+  "schema": "seed.character-identity-anchor/1.0",
+  "character_id": "seed:character:example-traveler",
+  "anchor_version": 0,
+  "canonical_name_ref": "seed:continuity:name-1",
+  "canonical_appearance_ref": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "provenance": {
+    "origin_world": "seed:world:example-origin",
+    "issuer": "seed:world:example-origin",
+    "record_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "continuity_manifest_ref": "seed:continuity:manifest-1",
+  "approved_portrayals": [
+    {
+      "world": "seed:world:example-destination",
+      "portrayal_ref": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "approved_at": "2026-11-05T14:00:00Z"
+    }
+  ],
+  "policy_versions": {
+    "privacy": 2,
+    "portability": 1
+  },
+  "latest_update": {
+    "version": 3,
+    "approved_at": "2026-11-05T14:00:00Z",
+    "signature": "test-only-unverified-signature"
+  }
+}

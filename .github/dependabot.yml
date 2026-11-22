@@ -1,7 +1,6 @@
 version: 2
 updates:
   # Only ecosystems actually present in the repository are listed.
-  # Add "cargo" when the Rust workspace has real crates and a Cargo.lock.
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -17,3 +16,17 @@ updates:
     schedule:
       interval: monthly
     open-pull-requests-limit: 3
+
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      cargo-minor-and-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    ignore:
+      # Major upgrades are reviewed manually.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

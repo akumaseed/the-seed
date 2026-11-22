@@ -1,18 +1,25 @@
 [workspace]
 resolver = "3"
-members = []
-
-# This repository currently contains architecture and contribution scaffolding.
-# Add crates to `members` only when an implementation slice is ready.
+members = ["crates/seed-types", "crates/seed-protocol"]
 
 [workspace.package]
 edition = "2024"
+version = "0.1.0"
 repository = "https://github.com/akumaseed/the-seed"
+publish = false
+# No license is declared: the license decision is pending owner confirmation.
+
+[workspace.dependencies]
+seed-types = { path = "crates/seed-types" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+jsonschema = { version = "0.63", default-features = false }
 
 [workspace.lints.rust]
-unsafe_code = "warn"
+unsafe_code = "forbid"
 missing_docs = "warn"
 
 [workspace.lints.clippy]
-all = "warn"
-pedantic = "warn"
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
