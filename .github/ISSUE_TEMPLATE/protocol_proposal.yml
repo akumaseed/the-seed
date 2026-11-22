@@ -1,0 +1,79 @@
+name: Architecture / protocol proposal (SEP)
+description: Propose a protocol, architecture, or design change. Foundational changes become a Seed Enhancement Proposal (SEP).
+title: "proposal: "
+labels: ["type: protocol", "status: needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for changes to protocol, identity, cryptography, consensus, transfer authority, patch policy, compatibility, governance, or character continuity.
+
+        A proposal is a discussion, not an accepted decision. Do not include exploit details — report vulnerabilities privately: https://github.com/akumaseed/the-seed/security/advisories/new
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Problem and motivation
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed technical design
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and versioning
+    validations:
+      required: true
+  - type: textarea
+    id: threat_model
+    attributes:
+      label: Threat model, security, and privacy analysis
+    validations:
+      required: true
+  - type: textarea
+    id: pillars
+    attributes:
+      label: Effects on CARDINAL, PANDORA, YURI, and SDKs
+      description: Keep each pillar within its responsibilities. PANDORA must not gain self-approval, consensus, or signing authority.
+    validations:
+      required: true
+  - type: textarea
+    id: character
+    attributes:
+      label: Character identity and continuity impact
+      description: |
+        - Does this affect a Character Identity Anchor, Continuity Manifest, player portrayal, or transfer?
+        - How are player consent, provenance, privacy, and creator rights preserved?
+        - Could this change erase, flatten, or misrepresent a character?
+    validations:
+      required: true
+  - type: textarea
+    id: operations
+    attributes:
+      label: Operational impact
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration, activation, and rollback
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and test strategy
+      description: Test vectors, reference implementation, and how success is demonstrated.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: Related specification section, ADR, or SEP

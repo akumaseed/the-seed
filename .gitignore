@@ -1,0 +1,17 @@
+/target/
+**/target/
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.dump
+*.bak
+.DS_Store
+Thumbs.db
